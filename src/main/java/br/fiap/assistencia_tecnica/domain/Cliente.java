@@ -3,15 +3,15 @@ package br.fiap.assistencia_tecnica.domain;
 import jakarta.persistence.*;
 
 @Entity
-//cria tabela no banco de dados
+//liga tabela no banco de dados
 @Table(name = "JAVA_CLIENTE")
 public class Cliente {
 
     @Id   //Identifica que é chave primaria
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_CLIENTE") //Nome que ta na tabela
-    private long id;
-
+    private Long id;
+    ///  JPA NAO TEM CONSTRUTOR
     @Column(name = "NOME", nullable = false, length = 120)
     private String nome;
 

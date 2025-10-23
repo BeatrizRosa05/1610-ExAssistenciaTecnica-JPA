@@ -1,11 +1,12 @@
 package br.fiap.assistencia_tecnica.web.controller;
 
+import br.fiap.assistencia_tecnica.domain.Cliente;
+import br.fiap.assistencia_tecnica.repository.ClienteRepository;
 import br.fiap.assistencia_tecnica.service.ClienteService;
 import br.fiap.assistencia_tecnica.web.dto.ClienteDTO;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
@@ -18,7 +19,20 @@ public class ClienteController {
 
     @PostMapping
     //RequestBody - Indica que vai "quebrar" o JSON em um objeto clienteDTO
-    public void cadastrar(@RequestBody ClienteDTO clienteDTO){
+    public Cliente cadastrar(@RequestBody ClienteDTO clienteDTO){
+        return service.cadastrar(clienteDTO);
 
     }
+
+    @GetMapping
+    public List<Cliente> listar(){
+        return service.listar();
+    }
+
+    @GetMapping("/{id}")
+    public Cliente buscarPorId(@PathVariable Long id){
+        return service.buscarPorId(id);
+    }
+
+
 }
