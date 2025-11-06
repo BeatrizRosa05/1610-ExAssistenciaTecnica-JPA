@@ -19,7 +19,7 @@ public class Equipamento {
     private Long id;
 
     //Muitos equipamentos podem pertencer a um cliente
-    @ManyToOne(fetch = FetchType.LAZY)            //ForeignKey banco de dados
+    @ManyToOne(fetch = FetchType.EAGER)            //ForeignKey banco de dados
     @JoinColumn(name = "ID_CLIENTE", foreignKey = @ForeignKey(name = "FK_EQUIP_CLIENTE"))
     private Cliente cliente;
 

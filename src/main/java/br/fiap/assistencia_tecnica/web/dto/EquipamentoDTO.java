@@ -15,7 +15,7 @@ public class EquipamentoDTO {
     private String marca;
     private String modelo;
     private String tipo;
-    private Long numeroSerie;
+    private String numeroSerie;
     private LocalDate dataCadastro;
 
 }

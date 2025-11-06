@@ -7,6 +7,8 @@ import br.fiap.assistencia_tecnica.repository.EquipamentoRepository;
 import br.fiap.assistencia_tecnica.web.dto.EquipamentoDTO;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class EquipamentoService {
     private final ClienteRepository clienteRepository;
@@ -18,10 +20,18 @@ public class EquipamentoService {
     }
 
     public Equipamento cadastrar(EquipamentoDTO equipamentoDTO){
+        /// 06/11          -------------                                            ***
+        var cliente = clienteRepository.findById(equipamentoDTO.getIdCliente()).orElseThrow(() -> new NoSuchElementException("Cliente não encontrado"));
         Equipamento equipamento = new Equipamento();
 
+        equipamento.setCliente(cliente);
+        equipamento.setTipo(equipamentoDTO.getTipo());
+        equipamento.setMarca(equipamentoDTO.getMarca());
+        equipamento.setModelo(equipamentoDTO.getModelo());
+        equipamento.setNumeroSerie(equipamentoDTO.getNumeroSerie());
+        equipamento.setDataCadastro(equipamentoDTO.getDataCadastro());
 
-
-        return repository.save(equipamento);
+        return equipamentoRepository.save(equipamento);
     }
+
 }
